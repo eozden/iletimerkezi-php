@@ -1,0 +1,29 @@
+{
+    "name": "eozden/iletimerkezi-php",
+    "description": "iletimerkezi.com php client library",
+    "type": "library",
+    "keywords": ["sms", "iletimerkezi"],
+    "homepage": "https://github.com/eozden/iletimerkezi-php",
+    "require": {
+        "php": "^5.3.2 || ^7.0 || ^8.0"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": { "Emarka\\Sms\\": "src" }
+    },
+     "autoload-dev": {
+        "psr-4": { "Emarka\\Test\\": "tests" }
+    },
+    "license": "GPL-3.0",
+    "support": {
+        "issues": "https://github.com/eozden/iletimerkezi-php/issues"
+    },
+    "authors": [
+        {
+            "name": "Enes Özden",
+            "email": "enes@emarka.com.tr"
+        }
+    ],
+    "minimum-stability": "stable"
+}
