@@ -241,7 +241,7 @@ class Config
      */
     public function setPassword($password)
     {
-        $this->secret = $password;
+        $this->password = $password;
 
         return $this;
     }
