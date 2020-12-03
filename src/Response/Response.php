@@ -29,7 +29,7 @@ class Response
     }
     public function statusCode()
     {
-        return $this->response->status->code;
+        return (int) $this->response->status->code;
     }
 
     public function statusMessage()
