@@ -30,12 +30,16 @@ class Config
                     break;
                 case 'api_key':
                 case 'apiKey':
-                case 'username':
                     $this->setApiKey($value);
                     break;
+                case 'username':
+                    $this->setUsername($value);
+                    break;
                 case 'secret':
-                case 'password':
                     $this->setSecret($value);
+                    break;
+                case 'password':
+                    $this->setPassword($value);
                     break;
                 case 'sender':
                     $this->setSender($value);
@@ -163,6 +167,20 @@ class Config
     }
 
     /**
+     * Sets the value of username.
+     *
+     * @param mixed $username the username
+     *
+     * @return self
+     */
+    public function setUsername($username)
+    {        
+        $this->apiKey = $username;
+
+        return $this;
+    }
+
+    /**
      * Gets the value of secret.
      *
      * @return mixed
@@ -185,6 +203,20 @@ class Config
             throw new \Exception('Api secret must be >= 40 and <= 120 characters');
         }
         $this->secret = $secret;
+        return $this;
+    }
+    
+    /**
+     * Sets the value of password.
+     *
+     * @param mixed $password the password
+     *
+     * @return self
+     */
+    public function setPassword($password)
+    {
+        $this->secret = $password;
+
         return $this;
     }
 
