@@ -49,6 +49,11 @@ class Response
         return $this->response->xpath($xpath_query);
     }
 
+    public function response()
+    {
+        return $this->response;
+    }
+
     // public function __call($name, $arguments)
     // {
     //     if (0 === strpos($name, 'get')) {
