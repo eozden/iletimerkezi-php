@@ -264,6 +264,14 @@ XML;
 
     private function _getRequestHeaderXml()
     {
+        if($this->config->getAuthentication() == 'username') {
+            return sprintf(
+                "\t<authentication>\n\t\t<username>%s</username>\n\t\t<password>%s</password>\n\t</authentication>",
+                htmlspecialchars($this->config->getUsername(), \ENT_XML1),
+                htmlspecialchars($this->config->getPassword(), \ENT_XML1)
+            );
+        }
+
         return sprintf(
             "\t<authentication>\n\t\t<key>%s</key>\n\t\t<hash>%s</hash>\n\t</authentication>",
             htmlspecialchars($this->config->getApiKey(), \ENT_XML1),

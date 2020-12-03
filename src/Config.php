@@ -7,8 +7,11 @@ class Config
     protected $scheme            = 'https';
     protected $domain            = 'api.iletimerkezi.com';
     protected $apiVersion        = 'v1';
+    protected $authentication    = 'apiKey'; // or username
     protected $apiKey;
+    protected $username;
     protected $secret;
+    protected $password;
     protected $sender;
     protected $encoding          = Encoding::ACCOUNT_DEFAULT;
     protected $countryCode;
@@ -27,6 +30,9 @@ class Config
                     break;
                 case 'domain':
                     $this->setDomain($value);
+                    break;
+                case 'authentication':
+                    $this->setAuthentication($value);
                     break;
                 case 'api_key':
                 case 'apiKey':
@@ -140,6 +146,16 @@ class Config
         return $this;
     }
 
+    public function getAuthentication()
+    {
+        return $this->authentication;
+    }
+
+    public function setAuthentication($authentication)
+    {
+        $this->authentication = $authentication;
+    }
+
     /**
      * Gets the value of apiKey.
      *
@@ -166,6 +182,11 @@ class Config
         return $this;
     }
 
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
     /**
      * Sets the value of username.
      *
@@ -175,7 +196,7 @@ class Config
      */
     public function setUsername($username)
     {        
-        $this->apiKey = $username;
+        $this->username = $username;
 
         return $this;
     }
@@ -204,6 +225,11 @@ class Config
         }
         $this->secret = $secret;
         return $this;
+    }
+
+    public function getPassword()
+    {
+        return $this->password;
     }
     
     /**
