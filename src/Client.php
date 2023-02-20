@@ -146,13 +146,15 @@ class Client
         );
     }
 
-    public function send($recipients, $message = null, $options = [], \Clousre $callback = null)
+    public function send($recipients, $message = null, $options = [], \Closure $callback = null)
     {
         $recipients = (array) $recipients;
 
         $sender     = isset($options['sender']) ? $options['sender'] : $this->config->getSender();
         $encoding   = new Encoding($this->config->getEncoding(isset($options['encoding']) ? $options['encoding'] : null));
         $send_at    = isset($options['sent_at']) ? $this->resolveTime($options['send_at']) : null;
+        $iys        = isset($options['iys']) ? $options['iys'] : 1;
+        $iys_list   = isset($options['iys_list']) ? $options['iys_list'] : 'BIREYSEL';
 
         if (empty($recipients)) {
             throw new \Exception('Recipient list can\'t be empty.');
@@ -165,6 +167,8 @@ class Client
         $xml_order  = '<order><sender>'.htmlspecialchars($sender, \ENT_XML1).'</sender>';
         $xml_order .= ($send_at === null ? '' : '<sendDateTime>'.htmlspecialchars($send_at, \ENT_XML1).'</sendDateTime>');
         $xml_order .= ($encoding->isAccountDefault() ? '' : '<encoding>'.htmlspecialchars($encoding->getEncoding(), \ENT_XML1).'</encoding>');
+        $xml_order .= '<iys>'.$iys.'</iys>';
+        $xml_order .= '<iysList>'.$iys_list.'</iysList>';
 
         if (!empty($message)) { // single message context
             $xml_order .= $this->_createMessageContext($recipients, $message);
